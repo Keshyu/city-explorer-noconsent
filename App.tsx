@@ -6,6 +6,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions'
 import PlaceCard from './src/PlaceCard'
 import locations from './src/locations'
+import { GOOGLE_MAPS_APIKEY } from './secrets/keys.ts'
 
 export default function App() {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -17,11 +18,6 @@ export default function App() {
 
   const origin = {latitude: 55.7510904, longitude: 37.5744204};
   const destination = {latitude: 55.7581909, longitude: 37.608713};
-  const GOOGLE_MAPS_APIKEY = 'AIzaSyDXTA6sJCAyBHrqppAWa9zhkTVVl9sabUQ';
-
-  let [o, d] = getRoutes(locations)[0];
-  console.log(o.coordinate);
-  console.log(d.coordinate);
 
   return (
     <View style={styles.container}>
