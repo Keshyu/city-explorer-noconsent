@@ -16,7 +16,8 @@ export default function PlaceCard({ mapRef, name, level, coordinate, color, dark
           },
           { duration: 500 },
         );
-      });
+      })
+      .catch((e) => console.log(e));
   }, [coordinate]);
 
   return (

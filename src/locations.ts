@@ -56,4 +56,15 @@ export const initialRegion = {
   longitudeDelta: 0.06437301635742188,
 };
 
+export const mapBoundaries = {
+  northEast: {
+    latitude: 62.55,
+    longitude: 114.05
+  },
+  southWest: {
+    latitude: 62.49,
+    longitude: 113.9,
+  },
+};
+
 export default locations;

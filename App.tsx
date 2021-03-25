@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { StyleSheet, Text, Button, View, FlatList, Dimensions } from 'react-native';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
@@ -7,7 +7,7 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions'
 import PlaceCard from './src/PlaceCard'
-import locations, { initialRegion } from './src/locations'
+import locations, { initialRegion, mapBoundaries } from './src/locations'
 import keys from './secrets/keys.ts'
 
 export default function App() {
@@ -19,12 +19,12 @@ export default function App() {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const mapRef = useRef<MapView>(null);
 
-  const handleMapDrag = useCallback(({ nativeEvent: { coordinate, position }}) => {
-    // TODO: Limit panning area
+  const handleMapReady = useCallback(() => {
+    mapRef.current.setMapBoundaries(
+      mapBoundaries.northEast,
+      mapBoundaries.southWest
+    );
   }, []);
-
-  const origin = {latitude: 55.7510904, longitude: 37.5744204};
-  const destination = {latitude: 55.7581909, longitude: 37.608713};
 
   if (!fontsLoaded)
     return ( <AppLoading /> );
@@ -36,8 +36,7 @@ export default function App() {
         initialRegion={initialRegion}
         ref={mapRef}
         provider={PROVIDER_GOOGLE}
-        onPanDrag={handleMapDrag}
-        onRegionChangeComplete={(region) => console.log(region)}
+        onMapReady={handleMapReady}
         minZoomLevel={13}
       >
         { getRoutes(locations).map(([origin, destination], index) => (
