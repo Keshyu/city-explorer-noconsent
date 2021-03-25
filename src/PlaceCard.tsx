@@ -52,12 +52,14 @@ const styles = StyleSheet.create({
   },
   level: {
     textTransform: 'uppercase',
+    fontFamily: 'OpenSans-Bold',
     fontSize: 12,
     fontWeight: 'bold',
     marginBottom: 4,
     color: '#fff',
   },
   button: {
+    fontFamily: 'OpenSans',
     fontSize: 18,
     marginBottom: 20,
   },

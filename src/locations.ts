@@ -49,4 +49,11 @@ const locations = [
   },
 ];
 
+export const initialRegion = {
+  latitude: 62.52458430047007,
+  latitudeDelta: 0.05282575853648552,
+  longitude: 113.98163583129644,
+  longitudeDelta: 0.06437301635742188,
+};
+
 export default locations;
