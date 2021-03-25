@@ -1,5 +1,24 @@
 const locations = [
   {
+    name: "Центр Сортировки Алмазов",
+    coordinate: { latitude: 62.5454997, longitude: 113.9828060 },
+    color: '#4ecdc4',
+    article: 'Sortirovka',
+  },
+  {
+    name: "Мирнинский горно-обогатительный комбинат, ЗАО \"АК \"АЛРОСА\"",
+    coordinate: { latitude: 62.5378688, longitude: 113.9719923 },
+    color: '#ffe66d',
+    dark: true,
+    article: 'Gok',
+  },
+  {
+    name: "Центр Подготовки Кадров АК \"АЛРОСА\"",
+    coordinate: { latitude: 62.5417553, longitude: 113.9692259 },
+    color: '#90be6d',
+    article: 'Cpk',
+  },
+  {
     name: "Мирнинское управление автодорог",
     coordinate: { latitude: 62.5120849, longitude: 113.9835664 },
     color: '#c44536',
@@ -8,12 +27,6 @@ const locations = [
     name: "Алмазавтоматика",
     coordinate: { latitude: 62.5263731, longitude: 113.9724382 },
     color: '#f8961e',
-  },
-  {
-    name: "Нюрбинский горно-обогатительный комбинат, ЗАО \"АК \"АЛРОСА\"",
-    coordinate: { latitude: 62.5314617, longitude: 113.9773762 },
-    color: '#ffe66d',
-    dark: true,
   },
   {
     name: "Якутнипроалмаз, институт ПАО \"АК \"АЛРОСА\"",
@@ -28,19 +41,9 @@ const locations = [
     dark: true,
   },
   {
-    name: "Центр Подготовки Кадров АК \"АЛРОСА\"",
-    coordinate: { latitude: 62.5417553, longitude: 113.9692259 },
-    color: '#90be6d',
-  },
-  {
     name: "Дворец культуры \"Алмаз\"",
     coordinate: { latitude: 62.5416927, longitude: 113.9790353 },
     color: '#577590',
-  },
-  {
-    name: "Центр Сортировки Алмазов",
-    coordinate: { latitude: 62.5454997, longitude: 113.9828060 },
-    color: '#4ecdc4',
   },
   {
     name: "Рудник Мир",

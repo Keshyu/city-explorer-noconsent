@@ -1,19 +1,26 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, Text, Button, View, FlatList, Dimensions } from 'react-native';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import AppLoading from 'expo-app-loading';
 import BottomSheet from '@gorhom/bottom-sheet';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import MapViewDirections from 'react-native-maps-directions'
-import PlaceCard from './src/PlaceCard'
-import locations, { initialRegion, mapBoundaries } from './src/locations'
-import keys from './secrets/keys.ts'
+import MapViewDirections from 'react-native-maps-directions';
+import PlaceCard from './src/PlaceCard';
+import LevelList from './src/LevelList';
+import Article from './src/Article';
+import locations, { initialRegion, mapBoundaries } from './src/locations';
+import keys from './secrets/keys.ts';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
     OpenSans: require('./assets/fonts/OpenSans/OpenSans-Regular.ttf'),
     'OpenSans-Bold': require('./assets/fonts/OpenSans/OpenSans-Bold.ttf'),
+    'OpenSans-Italic': require('./assets/fonts/OpenSans/OpenSans-Italic.ttf'),
   });
 
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -70,24 +77,25 @@ export default function App() {
         style={styles.bottomSheet}
         ref={bottomSheetRef}
         index={0}
-        snapPoints={['15%', '45%']}
+        snapPoints={['15%', '45%', '90%']}
       >
-        <Text style={styles.sheetTitle}>Уровни</Text>
+        <NavigationContainer>
+          <Stack.Navigator style={styles.navContainer}
+            initialRouteName="LevelList"
+            screenOptions={{
+              headerShown: false,
+              cardStyle: {
+                backgroundColor: '#fff',
+              }
+            }}
+          >
+            <Stack.Screen name="LevelList">
+              {props => <LevelList {...props} mapRef={mapRef} />}
+            </Stack.Screen>
+            <Stack.Screen name="Article" component={Article} />
 
-        <FlatList
-          data={locations}
-          renderItem={({ item, index }) => (
-            <PlaceCard
-              name={item.name}
-              level={index + 1}
-              coordinate={item.coordinate}
-              color={item.color}
-              dark={item.dark || false}
-              mapRef={mapRef}
-            />
-          )}
-          keyExtractor={(item, index) => index.toString()}
-        />
+          </Stack.Navigator>
+        </NavigationContainer>
       </BottomSheet>
 
       <StatusBar style="dark" />
@@ -116,16 +124,10 @@ const styles = StyleSheet.create({
     flex: 1,
     shadowOffset: { width: 0, height: -8 },
     shadowOpacity: 0.3,
-    shadowRadius: 24
+    shadowRadius: 24,
   },
-  sheetTitle: {
-    marginTop: 32,
-    marginLeft: 22,
-    marginRight: 22,
-    marginBottom: 18,
-    fontFamily: 'OpenSans-Bold',
-    fontSize: 26,
-    fontWeight: 'bold'
+  navContainer: {
+    backgroundColor: '#fff',
   },
 });
 
